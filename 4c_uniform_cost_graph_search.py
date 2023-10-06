@@ -25,6 +25,7 @@ def uniform_cost_graph_search(graph, start):
     least_cost = float('inf')  # Initialize least_cost with infinity
 
     while priority_queue:
+
         if not priority_queue:
             print("No solution, Frontier is empty !")
         else:
@@ -44,7 +45,7 @@ def uniform_cost_graph_search(graph, start):
                     if neighbor not in path:
                         new_cost = priority + cost
                         heapq.heappush(
-                            priority_queue, (new_cost, (neighbor, path + [neighbor])))
+                            priority_queue, (new_cost, (neighbor, path + [neighbor])))  # retrieves the element with the lowest priority from the priority queue
 
     if least_cost != float('inf'):
         print(f"Least Uniform Cost: {least_cost}")
