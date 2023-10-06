@@ -54,3 +54,4 @@ if result is not None:
     print("Breadth first Tree Search Path found:", result)  # Print the last element of the result (which is 'G')
 else:
     print("No solution found.")
+
