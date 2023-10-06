@@ -20,12 +20,21 @@ heuristic_costs = {
 }
 
 
-def astar_tree_search(graph, heuristic_costs, start, goal):
+def astar_graph_search(graph, heuristic_costs, start, goal):
     open_list = [(heuristic_costs[start], 0, start, [start])]
+    visited = set()
+
     while open_list:
         _, cost, current, path = heapq.heappop(open_list)
+
         if current == goal:
             return cost, path
+
+        if current in visited:
+            continue
+
+        visited.add(current)
+
         for neighbor, weight in graph[current].items():
             new_cost = cost + weight
             new_path = path + [neighbor]
@@ -36,7 +45,7 @@ def astar_tree_search(graph, heuristic_costs, start, goal):
 # Call the function
 start_node = 'S'
 goal_node = 'G'
-total_cost, path_taken = astar_tree_search(graph, heuristic_costs, start_node, goal_node)
+total_cost, path_taken = astar_graph_search(graph, heuristic_costs, start_node, goal_node)
 
 # Print the result
 print(f"Total Cost from {start_node} to {goal_node}: {total_cost}")

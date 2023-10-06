@@ -18,9 +18,10 @@ heuristic_costs = {
 }
 
 
-def greedy_tree_search(graph, heuristic_costs, start):
+def greedy_graph_search(graph, heuristic_costs, start):
     path = []
     total_cost = 0
+    visited = set()  # Initialize an empty set to keep track of visited nodes
 
     current_node = start
     while True:
@@ -34,7 +35,7 @@ def greedy_tree_search(graph, heuristic_costs, start):
         min_cost = float('inf')
 
         for neighbor, cost in neighbors.items():
-            if heuristic_costs[neighbor] < min_cost:
+            if heuristic_costs[neighbor] < min_cost and neighbor not in visited:
                 min_cost = heuristic_costs[neighbor]
                 next_node = neighbor
 
@@ -43,13 +44,14 @@ def greedy_tree_search(graph, heuristic_costs, start):
 
         total_cost += graph[current_node][next_node]
         current_node = next_node
+        visited.add(current_node)
 
-    return path, total_cost 
+    return path, total_cost
 
 
 # Call the function
 start_node = 'S'
-(path, total_cost) = greedy_tree_search(graph, heuristic_costs, start_node)
+(path, total_cost) = greedy_graph_search(graph, heuristic_costs, start_node)
 
 # Print the result
 print(f"Path: {' -> '.join(path)}")
