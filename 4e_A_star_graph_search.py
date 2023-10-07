@@ -41,6 +41,7 @@ def astar_graph_search(graph, heuristic_costs, start, goal):
             priority = new_cost + heuristic_costs[neighbor]
             heapq.heappush(open_list, (priority, new_cost, neighbor, new_path))
 
+
 # Call the function
 start_node = 'S'
 goal_node = 'G'
